@@ -22,4 +22,14 @@ class FightForm(forms.Form):
      def __init__(self, *args, **kwargs):
           super(FightForm, self).__init__(*args, **kwargs)
 
+class RoundForm(forms.Form):
+
+     CHOICES = (
+        ('1', 'High kick'),
+        ('2', 'Low kick'),
+     )
+     action = forms.ChoiceField(choices=CHOICES,widget=forms.Select())
+
+     def __init__(self, *args, **kwargs):
+          super(RoundForm, self).__init__(*args, **kwargs)
 
