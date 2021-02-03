@@ -1,0 +1,21 @@
+{% extends 'index/base.html' %}
+{% block content %}
+<h4>Great choice your fighter: {{fighter.name}}</h4>
+<h4>Health points: {{fighter.cur_health}}/{{fighter.health}}</h4>
+<br>
+<p>Oh no! There is a zombie on your way!</p>
+{% if messages %}
+<ul>
+   {% for message in messages %}
+	   <li>{{ message }}</li>
+   {% endfor %}
+</ul>
+{% endif %}
+     <form method="POST">
+          {% csrf_token %}
+          <legend>Your action</legend>
+          {{ form }}
+          <input type="submit" name="fighter" value="Save">
+     </form>
+
+{% endblock %}

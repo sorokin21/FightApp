@@ -1,0 +1,11 @@
+{% extends 'index/base.html' %}
+{% block content %}
+<h5>Available fighters:</h5>
+<br>
+{% for y in x %}
+     <p> Fighter {{y.name }} with {{y.cur_health}}/{{y.health}} health points.</p>
+
+
+
+{% endfor %}
+{% endblock %}

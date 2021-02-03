@@ -1,0 +1,16 @@
+{% extends 'index/base.html' %}
+
+{% block content %}
+{% for y in x %}
+     <p> Fighter {{y.name }} with {{y.health}} health points.</p>
+
+
+
+{% endfor %}
+     <form method="POST">
+          {% csrf_token %}
+          <legend>Please pick your fighter</legend>
+          {{ form.as_p }}
+          <input type="submit" name="fighter" value="Save">
+     </form>
+{% endblock %}
