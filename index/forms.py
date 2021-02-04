@@ -14,8 +14,8 @@ class FighterForm(forms.Form):
 class FightForm(forms.Form):
 
      CHOICES = (
-        ('1', 'Start a fight'),
-        ('2', 'Run away'),
+        ('1', 'Increase HP'),
+        ('2', 'Increase DMG'),
      )
      action = forms.ChoiceField(choices=CHOICES,widget=forms.Select())
 

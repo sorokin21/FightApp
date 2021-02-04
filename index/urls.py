@@ -7,4 +7,5 @@ urlpatterns = [
     path('info/', views.info, name='info'),
     path('round/', views.round, name='round'),
     path('lost/', views.lost, name='lost'),
+    path('loot/', views.loot, name='loot'),
 ]

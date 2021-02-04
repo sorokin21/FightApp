@@ -14,8 +14,7 @@
      <form method="POST">
           {% csrf_token %}
           <legend>Your action</legend>
-          {{ form }}
-          <input type="submit" name="fighter" value="Save">
+          <button type="submit">Begin a fight</button>
      </form>
 
 {% endblock %}
