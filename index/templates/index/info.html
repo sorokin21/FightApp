@@ -3,7 +3,8 @@
 <h5>Available fighters:</h5>
 <br>
 {% for y in x %}
-     <p> Fighter {{y.name }} with {{y.cur_health}}/{{y.health}} health points.</p>
+<img class="rounded_circle account-img" src=" {{ y.profile.image.url }}">
+     <p src=" {{ y.profile.image.url }}"> Fighter {{y.name }} with {{y.cur_health}}/{{y.health}} health points.</p>
 
 
 

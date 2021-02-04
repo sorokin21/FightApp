@@ -1,6 +1,7 @@
 {% extends 'index/base.html' %}
 {% block content %}
 <h4> {{fighter.name}}</h4>
+<img class="rounded_circle account-img" src=" {{ fighter.profile.image.url }}">
 <h4>Health points: {{fighter.cur_health}}/{{fighter.health}}</h4>
 <br>
 {% if messages %}
@@ -17,6 +18,7 @@
           <input type="submit" name="fighter" value="Save">
      </form>
 <h4>Enemy: {{y.name}}</h4>
+<img class="rounded_circle account-img" src=" {{ y.image.url }}">
 <h4>Health points: {{y.cur_health}}/{{y.health}}</h4>
 <br>
 {% endblock %}
