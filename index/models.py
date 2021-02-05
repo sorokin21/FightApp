@@ -40,3 +40,9 @@ class Zombie(models.Model):
                output_size = (400, 400)
                img.thumbnail(output_size)
                img.save(self.image.path)
+
+class Site(models.Model):
+     name = models.CharField(max_length=200)
+     record = models.IntegerField(default=0,null=True)
+     def __str__(self):
+          return self.name

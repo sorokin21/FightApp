@@ -12,10 +12,22 @@
     <div class="row">
       <div class="col-sm-2">
       {% block sidebar %}
+      {% if user.is_authenticated %}
+        <p>Hello {{user.username}}</p>
+      {% else %}
+        <p>Hello guest</p>
+      {% endif %}
         <ul class="sidebar-nav">
+          {% if user.is_authenticated %}
             <li><a href="{% url 'index_home' %}">Home</a></li>
             <li><a href="{% url 'info' %}">My info</a></li>
             <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+          {% endif %}
+            <li><a href="{% url 'record' %}">Record</a></li>
         </ul>
      {% endblock %}
       </div>

@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import FighterForm, FightForm, RoundForm
 from django.shortcuts import redirect
-from .models import Fighter, Zombie, Weapon
+from .models import Fighter, Zombie, Weapon, Site
 from django.contrib import messages
 import random
 
 # Create your views here.
+
+def record(request):
+     x = Site.objects.get(pk=1)
+     return render(request,'index/record.html',{'x':x})
+
 
 def loot(request):
      weapon = Weapon.objects.all()
@@ -36,7 +41,7 @@ def index(request):
                if x.skills != 0:
                     x.skills -= 1
                     if pk == '1':
-                         x.health += 5
+                         x.health += 2
                          x.save()
                          return redirect('index_home')
                     else:
@@ -113,10 +118,22 @@ def info(request):
 
 def lost(request):
      fighter = Fighter.objects.get(pk=1)
+     site = Site.objects.all()
+     o=fighter.wins
+     for i in site:
+          if fighter.wins > i.record:
+               i.name=fighter.name
+               i.record=fighter.wins
+               i.save()
+               fighter.wins=0
+               messages.success(request, 'Wow! New record!')
+     fighter.wins=0
      fighter.w_bool = False
      fighter.skills += 1
      fighter.save()
-     messages.info(request, 'You lost a knife')
+     messages.info(request, 'You lost a knife',)
+     messages.info(request, 'You have won '+str(o)+' times. ',)
+     
      return render(request,'index/lost.html',{'fighter':fighter})
 
 
