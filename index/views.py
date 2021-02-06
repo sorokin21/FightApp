@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import FighterForm, FightForm, RoundForm
+from .forms import FighterForm, FightForm, RoundForm, RecordForm
 from django.shortcuts import redirect
 from .models import Fighter, Zombie, Weapon, Site
 from django.contrib import messages
@@ -117,24 +117,33 @@ def info(request):
      return render(request,'index/info.html',content)
 
 def lost(request):
+
+     
      fighter = Fighter.objects.get(pk=1)
      site = Site.objects.all()
      o=fighter.wins
+     form = False
      for i in site:
           if fighter.wins > i.record:
-               i.name=fighter.name
-               i.record=fighter.wins
-               i.save()
-               fighter.wins=0
-               messages.success(request, 'Wow! New record!')
-     fighter.wins=0
+               if request.method == 'POST':
+                    form = RecordForm(request.POST)
+                    if form.is_valid():
+                         i.name = form.cleaned_data['name']
+                         i.record=fighter.wins
+                         print(i.name)
+                         i.save()
+                         fighter.wins=0
+                         messages.success(request, 'Wow! New record!')
+               else:
+                    form =RecordForm()
+     
      fighter.w_bool = False
      fighter.skills += 1
      fighter.save()
      messages.info(request, 'You lost a knife',)
      messages.info(request, 'You have won '+str(o)+' times. ',)
      
-     return render(request,'index/lost.html',{'fighter':fighter})
+     return render(request,'index/lost.html',{'fighter':fighter,'form':form})
 
 
      

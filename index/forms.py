@@ -33,3 +33,6 @@ class RoundForm(forms.Form):
      def __init__(self, *args, **kwargs):
           super(RoundForm, self).__init__(*args, **kwargs)
 
+class RecordForm(forms.Form):
+     name = forms.CharField()
+

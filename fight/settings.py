@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'index.apps.IndexConfig',
     'users.apps.UsersConfig',
     'quizz.apps.QuizzConfig',
+    'market.apps.MarketConfig',
 ]
 
 MIDDLEWARE = [

@@ -8,6 +8,14 @@
    {% for message in messages %}
 	   <li>{{ message }}</li>
    {% endfor %}
+      {% if form != False %}
+         <form method="POST">
+            {% csrf_token %}
+            <legend>Please enter a name to display your record.</legend>
+            {{ form.as_p }}
+            <input type="submit" name="fighter" value="Submit">
+         </form>
+      {% endif %}
 </ul>
 {% endif %}
 
